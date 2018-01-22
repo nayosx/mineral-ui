@@ -28,6 +28,7 @@ export { default as Checkbox, CheckboxGroup } from './Checkbox';
 export { default as Dropdown } from './Dropdown';
 export { FormField, FormFieldset, FormFieldDivider } from './Form';
 export { default as Icon } from './Icon';
+export { Box, Flex, FlexItem, StartEnd } from './layout';
 export { default as Link } from './Link';
 export { default as Menu, MenuDivider, MenuGroup, MenuItem } from './Menu';
 export { default as Popover } from './Popover';
