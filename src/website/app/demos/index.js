@@ -24,6 +24,7 @@ import checkbox from './Checkbox';
 import dropdown from './Dropdown';
 import form from './Form';
 import icon from './Icon';
+import layout from './layout';
 import link from './Link';
 import menu from './Menu';
 import popover from './Popover';
@@ -39,6 +40,7 @@ const demos = flatten([
   checkbox,
   dropdown,
   form,
+  layout,
   icon,
   link,
   menu,
