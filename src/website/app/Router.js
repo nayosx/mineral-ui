@@ -16,7 +16,7 @@
 
 /* @flow */
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Redirect, Route, Switch } from 'react-router-dom';
 import flatten from 'lodash/flatten';
 import createKeyMap from './utils/createKeyMap';
 import ComponentDocExample from './ComponentDocExample';
@@ -148,7 +148,15 @@ export default function Router({ demoRoutes }: Props) {
           const AsyncComponentDoc = Loadable({
             loader: () => import('./demos/index'),
             render({ default: fullDemos }: Object) {
-              return <ComponentDoc {...fullDemos[componentId]} />;
+              if (fullDemos[componentId].redirect) {
+                return (
+                  <Redirect
+                    to={`/components/${fullDemos[componentId].redirect}`}
+                  />
+                );
+              } else {
+                return <ComponentDoc {...fullDemos[componentId]} />;
+              }
             }
           });
 
