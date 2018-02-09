@@ -16,33 +16,18 @@
 
 /* @flow */
 import React, { Component } from 'react';
-import { createStyledComponent, getResponsiveStyles } from '../styles';
+import { createStyledComponent } from '../styles';
 
 type Props = {
-  /**
-   * Media query (min-width) breakpoints along which to apply props marked
-   * "&#xfeff;[[Responsive-capable]](#responsive)&#xfeff;"
-   */
-  breakpoints?: Array<number | string>,
   /** Rendered root HTML element */
   element?: string,
-  /** Sets the box height. [[Responsive-capable]](#responsive) */
-  height?: number | string | Array<number | string>,
-  /** Renders Box as an inline-block [[Responsive-capable]](#responsive) */
-  inline?: boolean | Array<boolean>,
-  /** Applies a margin on all sides [[Responsive-capable]](#responsive) */
-  margin?:
-    | 'xxs'
-    | 'xs'
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | 'xl'
-    | 'xxl'
-    | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies a bottom margin [[Responsive-capable]](#responsive) */
+  /** Sets the box height. */
+  height?: number | string,
+  /** Renders Box as an inline-block */
+  inline?: boolean,
+  /** Applies a margin on all sides */
+  margin?: 'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string,
+  /** Applies a bottom margin */
   marginBottom?:
     | 'xxs'
     | 'xs'
@@ -52,11 +37,10 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
+    | string,
   /**
    * Applies a right margin when the language is left-to-right and left margin
-   * [for RTL languages](#rtl) [[Responsive-capable]](#responsive)
+   * [for RTL languages](#rtl)
    */
   marginEnd?:
     | 'xxs'
@@ -67,9 +51,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies left & right margins [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies left & right margins */
   marginHorizontal?:
     | 'xxs'
     | 'xs'
@@ -79,9 +62,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies a left margin [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies a left margin */
   marginLeft?:
     | 'xxs'
     | 'xs'
@@ -91,9 +73,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies a right margin [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies a right margin */
   marginRight?:
     | 'xxs'
     | 'xs'
@@ -103,11 +84,10 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
+    | string,
   /**
    * Applies a left margin when the language is left-to-right and right margin
-   * [for RTL languages](#rtl) [[Responsive-capable]](#responsive)
+   * [for RTL languages](#rtl)
    */
   marginStart?:
     | 'xxs'
@@ -118,9 +98,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies a top margin [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies a top margin */
   marginTop?:
     | 'xxs'
     | 'xs'
@@ -130,10 +109,9 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
+    | string,
   /**
-   * Applies top & bottom margins [[Responsive-capable]](#responsive)
+   * Applies top & bottom margins
    */
   marginVertical?:
     | 'xxs'
@@ -144,17 +122,10 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies padding to all sides [[Responsive-capable]](#responsive) */
-  padding?:
-    | 'sm'
-    | 'md'
-    | 'lg'
-    | number
-    | string
-    | Array<'sm' | 'md' | 'lg' | number | string>,
-  /** Applies bottom padding [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies padding to all sides */
+  padding?: 'sm' | 'md' | 'lg' | number | string,
+  /** Applies bottom padding */
   paddingBottom?:
     | 'xxs'
     | 'xs'
@@ -164,11 +135,10 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
+    | string,
   /**
    * Applies right padding when the language is left-to-right and left padding
-   * [for RTL languages](#rtl) [[Responsive-capable]](#responsive)
+   * [for RTL languages](#rtl)
    */
   padddingEnd?:
     | 'xxs'
@@ -179,9 +149,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies left & right padding [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies left & right padding */
   paddingHorizontal?:
     | 'xxs'
     | 'xs'
@@ -191,9 +160,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies left padding [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies left padding */
   paddingLeft?:
     | 'xxs'
     | 'xs'
@@ -203,9 +171,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies right padding [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies right padding */
   paddingRight?:
     | 'xxs'
     | 'xs'
@@ -215,11 +182,10 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
+    | string,
   /**
    * Applies left padding when the language is left-to-right and right padding
-   * [for RTL languages](#rtl) [[Responsive-capable]](#responsive)
+   * [for RTL languages](#rtl)
    */
   padddingStart?:
     | 'xxs'
@@ -230,9 +196,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies bottom padding [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies bottom padding */
   paddingTop?:
     | 'xxs'
     | 'xs'
@@ -242,9 +207,8 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Applies top & bottom margins [[Responsive-capable]](#responsive) */
+    | string,
+  /** Applies top & bottom margins */
   paddingVertical?:
     | 'xxs'
     | 'xs'
@@ -254,10 +218,9 @@ type Props = {
     | 'xl'
     | 'xxl'
     | number
-    | string
-    | Array<'xxs' | 'xs' | 'sm' | 'md' | 'lg' | 'xl' | 'xxl' | number | string>,
-  /** Sets the box width [[Responsive-capable]](#responsive) */
-  width?: number | string | Array<number | string>
+    | string,
+  /** Sets the box width */
+  width?: number | string
 };
 
 const spacingTypes = {
@@ -282,7 +245,7 @@ const spacingTypes = {
 };
 
 const styles = {
-  root: ({ breakpoints, height, inline, theme, width, ...props }) => {
+  root: ({ height, inline, theme, width, ...props }) => {
     const rtl = theme.direction === 'rtl';
 
     const getMeasurement = value =>
@@ -303,9 +266,17 @@ const styles = {
 
       const setStyles = (directions, prop, styles) => {
         directions.forEach(direction => {
-          styles[`${property}${direction}`] = props[prop];
+          styles[`${property}${direction}`] = getSpacingValue(
+            property,
+            props[prop]
+          );
         });
       };
+
+      const getSpacingValue = (property, value) =>
+        (typeof value === 'string' &&
+          theme[`space_${spacingTypes[property]}_${value}`]) ||
+        getMeasurement(value);
 
       return (
         spacingPropKeys &&
@@ -322,7 +293,7 @@ const styles = {
             } else if (prop.indexOf('End') !== -1) {
               setStyles([`${rtl ? 'Left' : 'Right'}`], prop, acc);
             } else {
-              acc[prop] = props[prop];
+              acc[prop] = getSpacingValue(property, props[prop]);
             }
           }
           return acc;
@@ -330,37 +301,13 @@ const styles = {
       );
     };
 
-    const mapValueToProperty = (property, value) => {
-      if (property === 'display') {
-        return value ? 'inline-block' : 'block';
-      } else if (property === 'height' || property === 'width') {
-        return getMeasurement(value);
-      } else if (
-        property.indexOf('margin') !== -1 ||
-        property.indexOf('padding') !== -1
-      ) {
-        return (
-          (typeof value === 'string' &&
-            theme[`space_${spacingTypes[property]}_${value}`]) ||
-          getMeasurement(value)
-        );
-      } else {
-        return value;
-      }
+    return {
+      display: inline ? 'inline-block' : 'block',
+      height: getMeasurement(height),
+      ...getSpacingStyles('margin'),
+      ...getSpacingStyles('padding'),
+      width: getMeasurement(width)
     };
-
-    return getResponsiveStyles({
-      breakpoints,
-      mapValueToProperty,
-      styles: {
-        display: inline,
-        height,
-        ...getSpacingStyles('margin'),
-        ...getSpacingStyles('padding'),
-        width
-      },
-      theme
-    });
   }
 };
 

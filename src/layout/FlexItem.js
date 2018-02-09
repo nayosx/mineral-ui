@@ -16,59 +16,35 @@
 
 /* @flow */
 import React from 'react';
-import { createStyledComponent, getResponsiveStyles } from '../styles';
+import { createStyledComponent } from '../styles';
 import Box from './Box';
 
 type Props = {
-  /** Align item along the cross axis [[Responsive-capable]](#responsive) */
-  alignSelf?:
-    | 'start'
-    | 'end'
-    | 'center'
-    | 'stretch'
-    | Array<'start' | 'end' | 'center' | 'stretch'>,
-  /**
-   * Media query (min-width) breakpoints along which to apply props marked
-   * "&#xfeff;[[Responsive-capable]](#responsive)&#xfeff;"
-   */
-  breakpoints?: Array<number | string>,
-  /**
-   * Grow factor along the main axis ([see example](#grow))
-   * [[Responsive-capable]](#responsive)
-   */
-  grow?: number | Array<number>,
-  /**
-   * Shrink factor along the main axis ([see example](#shrink))
-   * [[Responsive-capable]](#responsive)
-   */
-  shrink?: number | Array<number>
+  /** Align item along the cross axis */
+  alignSelf?: 'start' | 'end' | 'center' | 'stretch',
+  /** Grow factor along the main axis ([see example](#grow)) */
+  grow?: number,
+  /** Shrink factor along the main axis ([see example](#shrink)) */
+  shrink?: number
 };
 
 const styles = {
-  root: ({ alignSelf, breakpoints, grow, shrink, theme, width }) => {
-    const mapValueToProperty = (property, value) => {
-      if (value === 'start' || value === 'end') {
-        return `flex-${value}`;
-      } else if (property === 'flexBasis') {
-        return typeof value === 'number' && value < 1
-          ? `${value * 100}%`
-          : value;
-      } else {
-        return value;
-      }
-    };
+  root: ({ alignSelf: propAlignSelf, grow, shrink, width: propWidth }) => {
+    const alignSelf =
+      propAlignSelf === 'start' || propAlignSelf === 'end'
+        ? `flex-${propAlignSelf}`
+        : propAlignSelf;
+    const width =
+      typeof propWidth === 'number' && propWidth < 1
+        ? `${propWidth * 100}%`
+        : propWidth;
 
-    return getResponsiveStyles({
-      breakpoints,
-      mapValueToProperty,
-      styles: {
-        alignSelf,
-        flexBasis: width || 'auto',
-        flexGrow: grow,
-        flexShrink: shrink
-      },
-      theme
-    });
+    return {
+      alignSelf,
+      flexBasis: width || 'auto',
+      flexGrow: grow,
+      flexShrink: shrink
+    };
   }
 };
 

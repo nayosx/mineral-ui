@@ -20,18 +20,13 @@ import Flex from './Flex';
 import FlexItem from './FlexItem';
 
 type Props = {
-  /**
-   * Media query (min-width) breakpoints along which to apply props marked
-   * "&#xfeff;[[Responsive-capable]](#responsive)&#xfeff;"
-   */
-  breakpoints?: Array<number | string>,
   /** Must be exactly two nodes */
   children: React$Node,
   /**
    * Direction of flow of items along the main axis
    * [[Responsive-capable]](#responsive)
    */
-  direction?: 'column' | 'row' | Array<'column' | 'row'>,
+  direction?: 'column' | 'row',
   /** @Private From Flex; filtered out */
   justifyContent?: any,
   /**
