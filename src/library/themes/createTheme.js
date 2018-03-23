@@ -2,7 +2,7 @@
 import color from '../colors';
 import createColorRamp from './createColorRamp';
 import fontSize_base from './fontSizeBase';
-import pxToEm from '../styles/pxToEm';
+import { getNormalizedValue, pxToEm } from '../styles';
 
 type Colors =
   | 'blue'
@@ -104,6 +104,13 @@ export default function createTheme(
 
     color_caption: color.gray_80,
 
+    color_h1: color.gray_100,
+    color_h2: color.gray_80,
+    color_h3: color.gray_80,
+    color_h4: color.gray_80,
+    color_h5: color.gray_100,
+    color_h6: color.gray_80,
+
     ...grays,
 
     color_placeholder: color.gray_60,
@@ -152,12 +159,24 @@ export default function createTheme(
     fontSize_prose: pxToEm(16),
     fontSize_ui: pxToEm(14),
 
+    fontWeight_h1: 800,
+    fontWeight_h2: 700,
+    fontWeight_h3: 700,
+    fontWeight_h4: 700,
+    fontWeight_h5: 700,
+    fontWeight_h6: 400,
     fontWeight_regular: 400,
     fontWeight_semiBold: 600,
     fontWeight_bold: 700,
     fontWeight_extraBold: 800,
 
     lineHeight: 1.25,
+    lineHeight_h1: getNormalizedValue(pxToEm(48), pxToEm(34)),
+    lineHeight_h2: getNormalizedValue(pxToEm(40), pxToEm(28)),
+    lineHeight_h3: getNormalizedValue(pxToEm(32), pxToEm(22)),
+    lineHeight_h4: getNormalizedValue(pxToEm(24), pxToEm(18)),
+    lineHeight_h5: getNormalizedValue(pxToEm(20), pxToEm(14)),
+    lineHeight_h6: getNormalizedValue(pxToEm(20), pxToEm(14)),
     lineHeight_prose: 1.5,
 
     shadow_1: '0 1px 2px 0 rgba(0,0,0,0.2), 0 2px 4px 0 rgba(0,0,0,0.2)',
