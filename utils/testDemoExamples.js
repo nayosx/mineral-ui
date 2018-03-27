@@ -27,7 +27,7 @@ export default function testDemoExamples(
   return describe('demo examples', () => {
     examples.filter(({ scope, source }) => scope && source).map(example => {
       it(example.id, () => {
-        const component = mount(
+        const wrapper = mount(
           <ThemeProvider>
             <LiveProvider
               code={example.source}
@@ -37,6 +37,14 @@ export default function testDemoExamples(
             </LiveProvider>
           </ThemeProvider>
         );
+
+        const component = wrapper
+          .findWhere(
+            // $FlowFixMe
+            node => node && node.type() && node.type().name === 'ErrorBoundary' // from react-live
+          )
+          .childAt(0);
+
         expect(component).toMatchSnapshot();
       });
     });
