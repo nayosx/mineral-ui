@@ -182,13 +182,12 @@ const Link = createStyledComponent(_Link, styles.link, {
 });
 const List = createStyledComponent('ol', styles.list);
 const ListItem = createStyledComponent('li', styles.listItem);
-const SectionHeading = createStyledComponent(
-  Heading,
-  styles.heading
-).withProps({
-  as: 'h2',
-  level: 4
-});
+const SectionHeading = createStyledComponent(Heading, styles.heading).withProps(
+  {
+    as: 'h2',
+    level: 4
+  }
+);
 const SubList = createStyledComponent('ol', styles.subList);
 const LogoHeading = createStyledComponent(
   Heading,

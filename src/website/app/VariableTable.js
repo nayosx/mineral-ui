@@ -27,8 +27,9 @@ const Value = createStyledComponent('span', ({ color, theme }) => {
       color: a11yColor(color),
       display: 'inline-block',
       fontFamily: theme.fontFamily_monospace,
-      padding: `${parseFloat(theme.space_inset_sm) /
-        2}em ${theme.space_inset_sm}`
+      padding: `${parseFloat(theme.space_inset_sm) / 2}em ${
+        theme.space_inset_sm
+      }`
     };
   } else {
     return {

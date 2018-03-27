@@ -517,11 +517,11 @@ const styles = {
         height: getMeasurement,
         width: getMeasurement,
         ...['margin', 'padding'].reduce((acc, property) => {
-          Object.keys(
-            getSpacingStyles(property, restProps, rtl)
-          ).forEach(style => {
-            acc[style] = value => getSpaceValue(property, theme, value);
-          });
+          Object.keys(getSpacingStyles(property, restProps, rtl)).forEach(
+            style => {
+              acc[style] = value => getSpaceValue(property, theme, value);
+            }
+          );
           return acc;
         }, {})
       };

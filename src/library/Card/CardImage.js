@@ -17,12 +17,16 @@ const Root = createStyledComponent(
       maxWidth: '100%',
 
       '&:first-child': {
-        borderRadius: `${theme.Card_borderRadius} ${theme.Card_borderRadius} 0 0`,
+        borderRadius: `${theme.Card_borderRadius} ${
+          theme.Card_borderRadius
+        } 0 0`,
         marginTop: 0
       },
 
       '&:last-child': {
-        borderRadius: `0 0 ${theme.Card_borderRadius} ${theme.Card_borderRadius}`,
+        borderRadius: `0 0 ${theme.Card_borderRadius} ${
+          theme.Card_borderRadius
+        }`,
         marginBottom: 0
       }
     };
